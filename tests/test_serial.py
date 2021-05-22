@@ -1,5 +1,5 @@
 import unittest
-from pykle_serial import serial
+import pykle_serial as serial
 
 
 class TestDeserialization(unittest.TestCase):

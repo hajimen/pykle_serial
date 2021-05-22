@@ -1,7 +1,6 @@
 from copy import deepcopy
 from dataclasses import dataclass, field as dcf
 from typing import Optional, List, Callable
-import json5
 
 
 UB_LABEL_MAP = 12
@@ -108,6 +107,7 @@ reorder_labels_in = _ReorderLabelsIn()
 
 def deserialize(rows: List) -> Keyboard:  # noqa: C901
     def _deserialize_error(msg: str, data):
+        import json5
         raise ValueError("Error: " + msg + ":\n  " + json5.dumps(data) if data is not None else "")
 
     if not isinstance(rows, List):
@@ -217,4 +217,5 @@ def deserialize(rows: List) -> Keyboard:  # noqa: C901
 
 
 def parse(json: str) -> Keyboard:
+    import json5
     return deserialize(json5.loads(json))

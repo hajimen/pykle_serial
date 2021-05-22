@@ -7,16 +7,16 @@ based on [commit #4080386 on Dec 31, 2019](https://github.com/ijprest/kle-serial
 ## Usage
 
 ```
-from pykle_serial import serial
+import pykle_serial as kle_serial
 
-keyboard = serial.deserialize([
+keyboard = kle_serial.deserialize([
     {'name': "Sample", 'author': "Your Name"},
     ["Q", "W", "E", "R", "T", "Y"]
 ])
 
 # or
 
-keyboard = serial.parse('''[
+keyboard = kle_serial.parse('''[
     { name: "Sample", author: "Your Name" },
     ["Q", "W", "E", "R", "T", "Y"]
 ]''')
