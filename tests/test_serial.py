@@ -89,6 +89,14 @@ class TestDeserialization(unittest.TestCase):
         assert result.keys[0].x2 != 0, msg
         assert result.keys[0].y2 != 0, msg
 
+    def test_c_g(self):
+        msg = "should add x and y to center of rotation"
+        result = serial.deserialize([[{'r': 10, 'rx': 1, 'ry': 1, 'y': -1.1, 'x': 2}, "E"]])
+        self.assertIsInstance(result, serial.Keyboard, msg)
+        assert len(result.keys) == 1, msg
+        assert result.keys[0].x == 3, msg
+        self.assertAlmostEqual(result.keys[0].y, -0.1)
+
     # key sizes
     def test_d_a(self):
         msg = "should reset width and height to 1"
