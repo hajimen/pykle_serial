@@ -75,6 +75,12 @@ class Keyboard:
     keys: List[Key] = _dcf_list()
 
 
+@dataclass
+class _Cluster:
+    x: float = 0.
+    y: float = 0.
+
+
 class _ReorderLabelsIn:
     def __init__(self):
         # Map from serialized label position to normalized position,
@@ -116,6 +122,7 @@ def deserialize(rows: List) -> Keyboard:  # noqa: C901
     # Initialize with defaults
     current: Key = Key()
     kbd: Keyboard = Keyboard()
+    cluster = _Cluster()
     align: int = 4
 
     for r, rows_r in enumerate(rows):
@@ -168,6 +175,17 @@ def deserialize(rows: List) -> Keyboard:  # noqa: C901
                         if len(split[0]) > 0:
                             current.default.textColor = split[0]
                         current.textColor = reorder_labels_in(split, align)
+                    if item.get('rx') is not None:
+                        cluster.x = float(item['rx'])
+                        current.rotation_x = cluster.x
+                        current.x = cluster.x
+                        current.y = cluster.y
+                    if item.get('ry') is not None:
+                        cluster.y = float(item['ry'])
+                        current.rotation_y = cluster.y
+                        current.x = cluster.x
+                        current.y = cluster.y
+
                     current.x += item.get('x', 0.)
                     current.y += item.get('y', 0.)
 
@@ -189,8 +207,6 @@ def deserialize(rows: List) -> Keyboard:  # noqa: C901
                             setattr(current, attr, c(v))
                     for item_key, attr in [
                         ('r', 'rotation_angle'),
-                        ('rx', 'rotation_x'),
-                        ('ry', 'rotation_y'),
                         ('w', 'width'),
                         ('w', 'width2'),
                         ('h', 'height'),
