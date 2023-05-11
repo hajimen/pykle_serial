@@ -183,6 +183,15 @@ class TestDeserialization(unittest.TestCase):
         assert result.keys[1].st == "MX1A-11Nx", msg_root + " :st_1"
         assert result.keys[2].st == "MX1A-11Nx", msg_root + " :st_2"
 
+    def test_e_e(self):
+        msg = "should handle blank profile ''"
+        result = serial.deserialize([[{'p': "prof"}, "", {'p': ""}, "", {'p': "prof2"}, ""]])
+        self.assertIsInstance(result, serial.Keyboard, msg)
+        assert len(result.keys) == 3, msg
+        assert result.keys[0].profile == 'prof', msg
+        assert result.keys[1].profile == '', msg
+        assert result.keys[2].profile == 'prof2', msg
+
     # text color
     def test_f_a(self):
         msg = "should apply colors to all subsequent keys"

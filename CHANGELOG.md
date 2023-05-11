@@ -13,3 +13,7 @@ setup.cfg error has been fixed.
 
 [Fix issue with incorrect x and y for rotated key](https://github.com/ijprest/kle-serial/pull/1/commits/913a6f42f3ee03586d1cb0665f5d24ffe5bf5b68)
 is ported from [commit #913a6f4 on Aug 19, 2019](https://github.com/kevin-wells/kle-serial/commit/913a6f42f3ee03586d1cb0665f5d24ffe5bf5b68).
+
+## Release: Version 0.0.4 : 2023/5/11
+
+Bug fix: Blank profile '' was ignored.
