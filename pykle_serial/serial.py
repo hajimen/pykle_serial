@@ -28,7 +28,7 @@ class Key:
     labels: List[str] = _dcf_list()
     textColor: List[Optional[str]] = dcf(default_factory=_default_factory_list_factory(UB_LABEL_MAP))
     textSize: List[Optional[int]] = dcf(default_factory=_default_factory_list_factory(UB_LABEL_MAP))
-    default: _inner_Key_default = _inner_Key_default()
+    default: _inner_Key_default = dcf(default_factory=_inner_Key_default)
     x: float = 0.
     y: float = 0.
     width: float = 1.
@@ -71,7 +71,7 @@ class KeyboardMetadata:
 
 @dataclass
 class Keyboard:
-    meta: KeyboardMetadata = KeyboardMetadata()
+    meta: KeyboardMetadata = dcf(default_factory=KeyboardMetadata)
     keys: List[Key] = _dcf_list()
 
 

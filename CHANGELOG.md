@@ -17,3 +17,7 @@ is ported from [commit #913a6f4 on Aug 19, 2019](https://github.com/kevin-wells/
 ## Release: Version 0.0.4 : 2023/5/11
 
 Bug fix: Blank profile '' was ignored.
+
+## Release: Version 0.0.5 : 2023/7/12
+
+Now Python 3.11 ready. Drops 3.7 support. (but it still works I guess)
