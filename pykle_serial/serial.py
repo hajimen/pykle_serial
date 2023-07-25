@@ -203,7 +203,7 @@ def deserialize(rows: List) -> Keyboard:  # noqa: C901
                         ('st', 'st', str),
                     ]:
                         v = item.get(item_key)
-                        if v:
+                        if v is not None:
                             setattr(current, attr, c(v))
                     for item_key, attr in [
                         ('r', 'rotation_angle'),
